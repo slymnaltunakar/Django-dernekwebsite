@@ -1,0 +1,33 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block author %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Anasayfa</a>
+				</li>
+				<li class="breadcrumb-item active">İletişim</li>
+			</ol>
+		</div>
+		<!-- About Content -->
+		<div class="about-main">
+			<div class="row">
+				{{ setting.contact | safe  }}
+			</div>
+			<!-- /.row -->
+		</div>
+
+
+{% endblock %}
