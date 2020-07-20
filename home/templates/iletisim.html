@@ -21,13 +21,32 @@
 				<li class="breadcrumb-item active">İletişim</li>
 			</ol>
 		</div>
-		<!-- About Content -->
-		<div class="about-main">
 			<div class="row">
-				{{ setting.contact | safe  }}
+				<div class="col-lg-4">
+					<h3>Bize Ulaşın !</h3>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn btn-primary" id="sendMessageButton">
+                </form>
+
+
+				</div>
+                <div class="col-lg-8">
+					{{ setting.contact | safe  }}
+				</div>
 			</div>
 			<!-- /.row -->
 		</div>
 
 
-{% endblock %}
+        {% endblock %}
