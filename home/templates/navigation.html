@@ -19,16 +19,24 @@
                   <li class="nav-item">
                      <a class="nav-link" href="/bagiscilar">Bağışcılarımız</a>
                   </li>
-                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Bilgilendirme
-                     </a>
-                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                        <a class="dropdown-item" href="/haberler">Haberler</a>
-                        <a class="dropdown-item" href="/etkinlikler">Etkinlikler</a>
-                        <a class="dropdown-item" href="/duyurular">Duyurular</a>
+
+
+                   {% load mptt_tags %}
+
+    {% recursetree category %}
+        <li class="nav-item dropdown">
+        <a href="/category/{{ node.slug }}" class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" {% if not node.is_leaf_node %} data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true" {% endif %}>{{ node.title }}</a>
+
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                   <div class="dropdown-menu dropdown-menu-right" {% if not node.is_leaf_node %} aria-labelledby="navbarDropdownPortfolio" {% endif %} >
+                        <a class="dropdown-item" href="#">{{ children }}</a>
                      </div>
-                  </li>
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+
 
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

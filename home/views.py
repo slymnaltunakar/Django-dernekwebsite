@@ -5,15 +5,16 @@ from django.shortcuts import render
 
 
 # Create your views here.
-from content.models import Product
+from content.models import Product, Category
 from home.models import Setting, ContactFormumuz, ContactForm
 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:3]
+    category = Category.objects.all()
 
-    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata }
+    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category }
     return render(request, 'index.html', context)
 
 
