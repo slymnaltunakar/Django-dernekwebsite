@@ -13,8 +13,9 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:3]
     category = Category.objects.all()
+    lasthaber= Product.objects.all().order_by('-id')[:6]
 
-    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category }
+    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category, 'lasthaber':lasthaber }
     return render(request, 'index.html', context)
 
 
