@@ -53,7 +53,7 @@ class CategoryAdmin2(DraggableMPTTAdmin):
 
     def related_products_count(self, instance):
         return instance.products_count
-        related_product_count.short_description = 'Related products (for this specific category)'
+    related_products_count.short_description = 'Related products (for this specific category)'
 
     def related_products_cumulative_count(self, instance):
         return instance.products_cumulative_count

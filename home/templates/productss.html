@@ -1,0 +1,60 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ categorydata.title }} {% endblock %}
+{% block description %} {{ categorydata.description }} {% endblock %}
+{% block author %} {{ categorydata.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Anasayfa</a>
+				</li>
+				<li class="breadcrumb-item active">{{ categorydata.title }}</li>
+			</ol>
+		</div>
+		<!-- About Content -->
+		<div class="about-main">
+			<div class="row">
+
+                {% for rs in products %}
+
+<!-- Blog Post -->
+			<div class="card mb-4">
+				<div class="card-body">
+				  <div class="row">
+					<div class="col-lg-6">
+					  <a href="#">
+						<img class="img-fluid rounded" src="{{ rs.image }}" alt="" />
+					  </a>
+					</div>
+					<div class="col-lg-6">
+					  <h2 class="card-title">{{ rs.title}}</h2>
+					  <p class="card-text">{{ rs.detail }}</p>
+					  <a href="#" class="btn btn-primary">Read More &rarr;</a>
+					</div>
+				  </div>
+				</div>
+				<div class="card-footer text-muted">
+				  Posted on January 1, 2017 by
+				  <a href="#">Start Bootstrap</a>
+				</div>
+			</div>
+
+                {% endfor %}
+
+			</div>
+			<!-- /.row -->
+		</div>
+
+
+{% endblock %}

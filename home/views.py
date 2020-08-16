@@ -20,13 +20,15 @@ def index(request):
 
 def hakkimizda(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'hakkimizda'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'hakkimizda','category': category}
     return render(request, 'hakkimizda.html', context)
 
 
 def bagiscilar(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page': 'bagiscilarimiz'}
+    category = Category.objects.all()
+    context = {'setting': setting, 'page': 'bagiscilarimiz','category': category}
     return render(request, 'bagiscilarimiz.html', context)
 
 def iletisim(request):
@@ -44,6 +46,15 @@ def iletisim(request):
             return HttpResponseRedirect('/iletisim')
 
     setting = Setting.objects.get(pk=1)
+    category = Category.objects.all()
     form = ContactForm()
-    context = {'setting': setting, 'page': 'iletisim'}
+    context = {'setting': setting, 'page': 'iletisim','category': category}
     return render(request, 'iletisim.html', context)
+
+
+def category_products(request,id,slug):
+    category = Category.objects.all()
+    categorydata = Category.objects.get(pk=id)
+    products = Product.objects.filter(category_id=id)
+    context = {'products': products,'category': category, 'slug': slug}
+    return render(request, 'productss.html',context)
