@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 
 # Create your views here.
-from content.models import Product, Category, Images
+from content.models import Product, Category, Images, Comment
 from home.models import Setting, ContactFormumuz, ContactForm
 
 
@@ -65,6 +65,7 @@ def category_products(request,id,slug):
 def product_detail(request,id,slug):
     category = Category.objects.all()
     product = Product.objects.get(pk=id)
+    comments = Comment.objects.filter(product_id=id, status='True')
     images= Images.objects.filter(icerik_id=id)
-    context = {'product': product,'category': category, 'slug': slug,'images': images}
+    context = {'product': product,'category': category, 'slug': slug,'images': images,'comments': comments}
     return render(request, 'product_detail.html',context)
