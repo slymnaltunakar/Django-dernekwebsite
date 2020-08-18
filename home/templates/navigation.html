@@ -53,6 +53,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/üye">Üye girişi</a>
                 </li>
+<li>
+            <form action="/search/" class="col-xs-6 visible-xs" >
+                {% csrf_token %}
+      <input id="query" name="query" class="input search" type="text" placeholder="Enter your keyword">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+            </li>
             </ul>
         </div>
     </div>

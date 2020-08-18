@@ -1,0 +1,51 @@
+{% extends "Homebase.html" %}
+
+{% block title %} İçerik Arama Sonuçları {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block author %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Anasayfa</a>
+				</li>
+				<li class="breadcrumb-item active">Hakkımızda</li>
+			</ol>
+		</div>
+		<!-- About Content -->
+		<div class="about-main">
+			<div class="row">
+
+				<table cellpadding="3" width="1200">
+                    <tr>
+                        <th>Image</th>
+                        <th>İçerik Adı</th>
+                        <th>Kategorisi</th>
+                    </tr>
+                    {% for rs in products %}
+                        <tr>
+                            <td><a href="/content/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="width:300px;height: 180px " alt=""> </a></td>
+                            <td><h4 class="content-name"><a href="/content/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></h4> </td>
+                            <td><a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category }}</a></td>
+
+                        </tr>
+
+                    {% endfor %}
+                </table>
+
+
+			</div>
+			<!-- /.row -->
+		</div>
+
+
+{% endblock %}
