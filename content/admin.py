@@ -21,8 +21,8 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'image_tag', 'category', 'status']
     readonly_fields = ('image_tag',)
     list_filter = ['category']
-    readonly_fields = ('image_tag',)
     inlines = [ProductImageInLine]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class ImagesAdmin(admin.ModelAdmin):
