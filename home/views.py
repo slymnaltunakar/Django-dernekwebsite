@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 
 # Create your views here.
-from content.models import Product, Category
+from content.models import Product, Category, Images
 from home.models import Setting, ContactFormumuz, ContactForm
 
 
@@ -13,10 +13,12 @@ def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = Product.objects.all()[:3]
     category = Category.objects.all()
-    lasthaber= Product.objects.all().order_by('-id')[:6]
+    lasthaber= Product.objects.all().order_by('-id')[:8]
+
 
     context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category, 'lasthaber':lasthaber }
     return render(request, 'index.html', context)
+
 
 
 def hakkimizda(request):
@@ -57,5 +59,12 @@ def category_products(request,id,slug):
     category = Category.objects.all()
     categorydata = Category.objects.get(pk=id)
     products = Product.objects.filter(category_id=id)
-    context = {'products': products,'category': category, 'slug': slug}
+    context = {'products': products,'category': category, 'slug': slug, 'categorydata': categorydata}
     return render(request, 'productss.html',context)
+
+def product_detail(request,id,slug):
+    category = Category.objects.all()
+    product = Product.objects.get(pk=id)
+    images= Images.objects.filter(icerik_id=id)
+    context = {'product': product,'category': category, 'slug': slug,'images': images}
+    return render(request, 'product_detail.html',context)

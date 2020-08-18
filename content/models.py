@@ -47,6 +47,7 @@ class Product(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(blank=True, upload_to='images/')
     detail = RichTextUploadingField()
+    slug = models.SlugField()
     status = models.CharField(max_length=10, choices=STATUS)
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
@@ -54,16 +55,13 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-    def image_tag(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
-
-    image_tag.short_description = 'image'
 
     def image_tag(self):
         if self.image:
             return mark_safe(f'<img src="{self.image.url}" height="50"/>')
         else:
             return ""
+
 
 class Images(models.Model):
     icerik = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -73,10 +71,7 @@ class Images(models.Model):
     def __str__(self):
         return self.title
 
-    def image_tag(self):
-        return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
 
-    image_tag.short_description = 'image'
 
     def image_tag(self):
         if self.image:

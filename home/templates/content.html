@@ -1,104 +1,104 @@
 {% load static %}
 <!-- Page Content -->
-    <div class="container">
-        <div class="services-bar">
-            <h1 class="my-4">{{ category.title}}</h1>
-            <!-- Services Section -->
-            <div class="row">
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Etkinlikler</h4>
-                     <div class="card-img">
+<div class="container">
+    <div class="services-bar">
+        <h1 class="my-4">{{ category.title}}</h1>
+        <!-- Services Section -->
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Etkinlikler</h4>
+                    <div class="card-img">
                         <img class="img-fluid" src="{% static 'images/services-img-01.jpg' %}" alt="" />
-                     </div>
-                     <div class="card-body">
+                    </div>
+                    <div class="card-body">
                         <p class="card-text">Yaklaşan etkinlikler</p>
-                     </div>
-                     <div class="card-footer">
+                    </div>
+                    <div class="card-footer">
                         <a href="/category/8/etkinlikler" class="btn btn-primary"> Tıklayınız...</a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Duyurular</h4>
-                     <div class="card-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Duyurular</h4>
+                    <div class="card-img">
                         <img class="img-fluid" src="{% static 'images/services-img-02.jpg' %}" alt="" />
-                     </div>
-                     <div class="card-body">
+                    </div>
+                    <div class="card-body">
                         <p class="card-text">Yaklaşan duyurular</p>
-                     </div>
-                     <div class="card-footer">
+                    </div>
+                    <div class="card-footer">
                         <a href="#" class="btn btn-primary">Learn More</a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-4 mb-4">
-                  <div class="card h-100">
-                     <h4 class="card-header">Haberler</h4>
-                     <div class="card-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">Haberler</h4>
+                    <div class="card-img">
                         <img class="img-fluid" src="{% static 'images/services-img-03.jpg' %}" alt="" />
-                     </div>
-                     <div class="card-body">
+                    </div>
+                    <div class="card-body">
                         <p class="card-text">Yeni haberler</p>
-                     </div>
-                     <div class="card-footer">
+                    </div>
+                    <div class="card-footer">
                         <a href="#" class="btn btn-primary">Learn More</a>
-                     </div>
-                  </div>
-               </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- About Section -->
-        <div class="about-main">
-            <div class="row">
-               <div class="col-lg-6">
-                  <h2>Welcome </h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <h5>Our smart approach</h5>
-                  <ul>
-                     <li>Sed at tellus eu quam posuere mattis.</li>
-                     <li>Phasellus quis erat et enim laoreet posuere ac porttitor ipsum.</li>
-                     <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                     <li>Duis porttitor odio pellentesque mollis vulputate.</li>
-                     <li>Quisque ac eros non ex hendrerit vehicula.</li>
-                  </ul>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
-               </div>
-               <div class="col-lg-6">
-                  <img class="img-fluid rounded" src="{% static 'images/about-img.jpg' %}" alt="" />
-               </div>
+        <!-- /.row -->
+    </div>
+    <!-- About Section -->
+    <div class="about-main">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>Welcome </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <h5>Our smart approach</h5>
+                <ul>
+                    <li>Sed at tellus eu quam posuere mattis.</li>
+                    <li>Phasellus quis erat et enim laoreet posuere ac porttitor ipsum.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Duis porttitor odio pellentesque mollis vulputate.</li>
+                    <li>Quisque ac eros non ex hendrerit vehicula.</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
             </div>
-            <!-- /.row -->
+            <div class="col-lg-6">
+                <img class="img-fluid rounded" src="{% static 'images/about-img.jpg' %}" alt="" />
+            </div>
         </div>
-        <!-- Portfolio Section -->
-        <div class="portfolio-main">
-            <h2>Son haberler</h2>
-            <div class="row">
+        <!-- /.row -->
+    </div>
+    <!-- Portfolio Section -->
+    <div class="portfolio-main">
+        <h2>Son haberler</h2>
+        <div class="row">
             {% for rs in lasthaber %}
 
 
 
-               <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <img class="card-img-top" src="{{ rs.image}}" alt="" />
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title}}</a>
-              </h4>
-              <p class="card-text">{{ rs.desc }}</p>
-            </div>
-          </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <img src="{{ rs.category.image.url }}" alt="" />
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="/product/{{ rs.id }}/{{ rs.slug }}">{{ rs.title}}</a>
+                            </h4>
+                            <p class="card-text">{{ rs.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
         </div>
-
-                {% endfor %}
-
-
-            </div>
-            <!-- /.row -->
-        </div>
-        <hr>
-
+        <!-- /.row -->
     </div>
-    <!-- /.container -->
+    <hr>
+
+</div>
+<!-- /.container -->

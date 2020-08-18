@@ -1,0 +1,59 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ product.title }} {% endblock %}
+{% block description %} {{ product.description }} {% endblock %}
+{% block author %} {{ product.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="breadcrumb-main">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Anasayfa</a>
+                </li>
+                <li> <a class="breadcrumb-item active" href="/category/{{ product.category_id }}/{{ product.category.slug }}"> / {{ product.category }}</a></li>
+                <li class="breadcrumb-item active"> / {{ product.title }}</li>
+            </ol>
+        </div>
+        <!-- About Content -->
+        <div class="about-main">
+            <div class="row">
+
+
+                <div class="col-lg-8">
+
+                <img class="img-fluid rounded" src="{{ product.image.url}}" alt="" />
+
+                    <hr>
+                    <!-- Date/Time -->
+                    <p>{{ product.create_at}}</p>
+                    <hr>
+                    <!-- Post Content -->
+                    <p> {{ product.category}} </p>
+                    <hr>
+
+
+                    <p>{{ product.detail}}</p>
+
+
+
+                    <hr>
+                    {% for rs in images %}
+                    <!-- Preview Image -->
+                    <img class="img-fluid rounded" src="{{ rs.image.url}}" alt="" />
+
+                    {% endfor %}
+
+                </div>
+                <!-- /.row -->
+            </div>
+
+
+{% endblock %}
