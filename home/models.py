@@ -59,6 +59,8 @@ class ContactForm(models.Model):
 
 
 
+
+
 class ContactFormumuz(ModelForm):
     class Meta:
         model = ContactForm
@@ -68,18 +70,22 @@ class ContactFormumuz(ModelForm):
             return self.name
 
 
-class UserProfiles(models.Model):
+
+
+
+class UserProfili(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(blank=True, max_length=20)
-    address = models.CharField(blank=True, max_length=20)
-    city = models.CharField(blank=True, max_length=20)
-    country = models.CharField(blank=True, max_length=20)
+    address = models.CharField(blank=True, max_length=50)
+    city = models.CharField(blank=True, max_length=50)
+    country = models.CharField(blank=True, max_length=255)
     image = models.ImageField(blank=True, upload_to='images/users/')
 
     def __str__(self):
         return self.user.username
+
     def user_name(self):
-        return self.user.first_name +' '+ self.user.last_name
+        return self.user.first_name + ' ' + self.user.last_name
 
     def image_tag(self):
         if self.image:
@@ -87,7 +93,8 @@ class UserProfiles(models.Model):
         else:
             return ""
 
-class UserProfilesForm(ModelForm):
+class UserProfiliFormu(ModelForm):
     class Meta:
-        model = UserProfiles
-        fields=['phone','address','city','country','image']
+        model = UserProfili
+        fields = ['phone', 'address', 'city', 'country', 'image']
+

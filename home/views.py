@@ -11,7 +11,7 @@ from django.shortcuts import render
 # Create your views here.
 from content.models import Product, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormumuz, ContactForm, UserProfiles
+from home.models import Setting, ContactFormumuz, ContactForm, UserProfili
 
 
 def index(request):
@@ -125,11 +125,13 @@ def signup_view(request):
             login(request,user)
 
             current_user = request.user
-            data = UserProfiles()
+            data = UserProfili()
             data.user_id = current_user.id
             data.image = "images/users/user.png"
             data.save()
             return HttpResponseRedirect('/')
+
+
 
     form=SignUpForm()
     category = Category.objects.all()
