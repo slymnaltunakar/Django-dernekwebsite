@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
+    'icerik.apps.IcerikConfig',
     'home.apps.HomeConfig',
     'content.apps.ContentConfig',
     'user.apps.UserConfig',

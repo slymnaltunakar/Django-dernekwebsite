@@ -12,6 +12,7 @@ from django.shortcuts import render
 from content.models import Product, Category, Images, Comment
 from home.forms import SearchForm, SignUpForm
 from home.models import Setting, ContactFormumuz, ContactForm, UserProfili
+from icerik.models import Icerik, CImages
 
 
 def index(request):
@@ -19,9 +20,10 @@ def index(request):
     sliderdata = Product.objects.all()[:3]
     category = Category.objects.all()
     lasthaber= Product.objects.all().order_by('-id')[:8]
+    news = Icerik.objects.all().order_by('-id')[:4]
 
 
-    context = {'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category, 'lasthaber':lasthaber }
+    context = {'news': news,'setting': setting, 'page': 'home', 'sliderdata':sliderdata ,'category': category, 'lasthaber':lasthaber }
     return render(request, 'index.html', context)
 
 
@@ -140,4 +142,18 @@ def signup_view(request):
         'form':form,
     }
     return render(request,'signup.html',context)
+
+
+def icerikdetail(request,id,slug):
+    category=Category.objects.all()
+    icerik=Icerik.objects.get(pk=id)
+    images=CImages.objects.filter(content_id=id)
+
+
+    context={
+        'icerik':icerik,
+        'category':category,
+        'images':images,
+    }
+    return render(request,'icerik_detail.html',context)
 

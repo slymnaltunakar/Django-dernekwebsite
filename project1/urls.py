@@ -27,12 +27,14 @@ urlpatterns = [
     path('bagiscilar', views.bagiscilar, name='bagiscilar'),
     path('iletisim', views.iletisim, name='iletisim'),
     path('admin/', admin.site.urls),
+    path('icerik/',include('icerik.urls')),
     path('home/',include('home.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('user/', include('user.urls')),
 
     path('category/<int:id>/<slug:slug>/', views.category_products, name='category_products'),
     path('product/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
+    path('icerik/<int:id>/<slug:slug>/',views.icerikdetail, name='icerikdetail'),
 
     path('search/', views.product_search, name='product_search'),
     path('logout/', views.logout_view, name='logout_view'),
