@@ -1,0 +1,68 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block author %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="breadcrumb-main">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Anasayfa</a>
+                </li>
+                <li class="breadcrumb-item active">üye Kayıt</li>
+            </ol>
+        </div>
+        <!-- About Content -->
+        <div class="about-main">
+            <div class="row">
+<div class="col-md-12">
+                    <div class="container">
+                        <div class="section-title" align="center">
+                            <h3 class="title">Üye Kayıt Formu</h3>
+                        </div>
+
+                {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert" align="center">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="form-style-9" action="" method="post">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <p>
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small style="color: grey">{{ field.help_text }}</small>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <p style="color: red">{{ error }}</p>
+                                {% endfor %}
+                                </p>
+
+                            {% endfor %}
+                        <button type="submit">Sign Up</button>
+                        </form>
+
+                        <hr/>
+                                                <hr/>
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+
+
+{% endblock %}
