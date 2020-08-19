@@ -1,13 +1,14 @@
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.core.checks import messages
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from content.models import Category, Comment
 from home.models import UserProfili
+from icerik.models import Icerik, IcerikForm, Menu
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -80,3 +81,80 @@ def deletecomment(request,id):
     current_user=request.user
     Comment.objects.filter(id=id,user_id=current_user.id).delete()
     return HttpResponseRedirect('/user/comments')
+
+
+@login_required(login_url='/login')
+def contents(request):
+    category=Category.objects.all()
+    menu=Menu.objects.all()
+    current_user=request.user
+    contents=Icerik.objects.filter(user_id=current_user.id)
+
+    context={
+        'category':category,
+        'menu':menu,
+        'contents':contents,
+    }
+    return render(request,'user_contents.html',context)
+
+@login_required(login_url='/login')
+def addcontent(request):
+    if request.method=='POST':
+        form=IcerikForm(request.POST,request.FILES)
+        if form.is_valid():
+            current_user=request.user
+            data=Icerik()
+            data.user_id=current_user.id
+            data.title=form.cleaned_data['title']
+            data.keywords=form.cleaned_data['keywords']
+            data.description=form.cleaned_data['description']
+            data.image=form.cleaned_data['image']
+            data.type=form.cleaned_data['type']
+            data.slug=form.cleaned_data['slug']
+            data.detail=form.cleaned_data['detail']
+            data.status='False'
+            data.save()
+            return  HttpResponseRedirect('/user/contents')
+        else:
+            messages.error(request,'Content form error :' + str(form.errors))
+            return HttpResponseRedirect('/user/addcontent')
+    else:
+        category= Category.objects.all()
+        form=IcerikForm()
+        menu = Menu.objects.all()
+        context={
+            'category':category,
+            'form':form,
+            'menu':menu,
+        }
+        return render(request,'user_addcontent.html',context)
+
+
+@login_required(login_url='/login')
+def contentedit(request,id):
+    content=Icerik.objects.get(id=id)
+    if request.method=='POST':
+        form=IcerikForm(request.POST,request.FILES,instance=content)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Your Content Updated succesfully')
+            return HttpResponseRedirect('/user/contents')
+        else:
+            messages.error(request,'Content Form Error:'+ str(form.errors))
+            return HttpResponseRedirect('/user/contentedit'+str(id))
+    else:
+        category=Category.objects.all()
+
+        form=IcerikForm(instance=content)
+        context={
+            'category':category,
+            'form':form
+        }
+        return render(request,'user_addcontent.html',context)
+
+@login_required(login_url='/login')
+def contentdelete(request,id) :
+    current_user=request.user
+    Icerik.objects.filter(id=id,user_id=current_user.id).delete()
+    messages.success(request,'Content Deletedd..')
+    return HttpResponseRedirect('/user/contents')

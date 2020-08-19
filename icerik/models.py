@@ -1,8 +1,10 @@
+from ckeditor.widgets import CKEditorWidget
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from django.forms import TextInput, FileInput, Select, ModelForm
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from mptt.fields import TreeForeignKey
@@ -69,6 +71,20 @@ class Icerik(models.Model):
 
     def get_absolute_url(self):
         return reverse('content_detail',kwargs={'slug':self.slug})
+
+class IcerikForm(ModelForm):
+    class Meta:
+        model=Icerik
+        fields=['type','title','slug','keywords','description','image','detail']
+        widgets={
+            'title':TextInput(attrs={'class':'input','placeholder':'title'}),
+            'slug':TextInput(attrs={'class':'input','placeholder':'slug'}),
+            'keywords': TextInput(attrs={'class': 'input', 'placeholder': 'keywords'}),
+            'description': TextInput(attrs={'class': 'input', 'placeholder': 'description'}),
+            'type': Select(attrs={'class': 'input', 'placeholder': 'type'},choices=TYPE),
+            'image': FileInput(attrs={'class': 'input', 'placeholder': 'image'}),
+            'detail': CKEditorWidget()
+        }
 
 
 class CImages(models.Model):
