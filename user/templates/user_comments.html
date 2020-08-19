@@ -1,0 +1,77 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block author %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+		<div class="breadcrumb-main">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="/">Anasayfa</a>
+				</li>
+				<li class="breadcrumb-item active">Hakkımızda</li>
+			</ol>
+		</div>
+		<!-- About Content -->
+		<div class="about-main">
+			<div class="row">
+<div class="col-md-3">
+                    <div class="container">
+                        <div class="map-box">
+                            <h2 class="title">User Panel</h2>
+                        </div>
+                        {% include "user_panel.html" %}
+
+
+                    </div>
+                </div><!-- end col -->
+				<div class="col-md-9">
+					<div class="map-box">
+                        <h2 class="title">User Information</h2>
+<table class="table">
+
+    <tr>
+        <th class="text-left">İçerik</th>
+        <th class="text-left">Subject</th>
+        <th class="text-left">Comment</th>
+        <th class="text-left">Status</th>
+        <th class="text-left">Date</th>
+        <th class="text-left">Detail</th>
+
+    </tr>
+    {% for rs in comments %}
+    <tr>
+        <td class="text-left">
+            <a href="/note/{{ rs.product_id }}/{{ rs.product.slug }}">
+           <strong> {{ rs.product.title }}</strong>
+                </a>
+        </td>
+
+        <td class="text-left">{{ rs.subject }}</td>
+        <td class="text-left">{{ rs.comment }}</td>
+        <td class="text-left">{{ rs.status }}</td>
+        <td class="text-left">{{ rs.create_at }}</td>
+        <td class="text-left"><a class="btn-custom" href="/user/deletecomment/{{ rs.id }}" onclick="return confirm('Delete ! Are you sure?')">Delete</a></td>
+    </tr>
+
+{% endfor %}
+
+</table>
+
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+		</div>
+
+
+{% endblock %}
