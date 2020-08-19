@@ -29,7 +29,7 @@
                         <p class="card-text">Yaklaşan duyurular</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Learn More</a>
+                        <a href="/category/7/duyurular" class="btn btn-primary">Tıklayınız...</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         <p class="card-text">Yeni haberler</p>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Learn More</a>
+                        <a href="/category/6/haberler" class="btn btn-primary">Tıklayınız...</a>
                     </div>
                 </div>
             </div>
@@ -53,20 +53,12 @@
     <!-- About Section -->
     <div class="about-main">
         <div class="row">
-            <div class="col-lg-6">
-                <h2>Welcome </h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <h5>Our smart approach</h5>
-                <ul>
-                    <li>Sed at tellus eu quam posuere mattis.</li>
-                    <li>Phasellus quis erat et enim laoreet posuere ac porttitor ipsum.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Duis porttitor odio pellentesque mollis vulputate.</li>
-                    <li>Quisque ac eros non ex hendrerit vehicula.</li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+            <div class="col-lg-8">
+                <h2>Hoşgeldiniz </h2>
+                <p>{{ setting.aboutus | safe  }}</p>
+
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <img class="img-fluid rounded" src="{% static 'images/about-img.jpg' %}" alt="" />
             </div>
         </div>

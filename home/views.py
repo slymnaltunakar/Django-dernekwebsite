@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth import logout, login, authenticate
 from django.core.checks import messages
 from django.core.mail import message
 from django.http import HttpResponse, HttpResponseRedirect
@@ -88,4 +89,28 @@ def product_search(request):
             return render(request,'products_search.html',context)
     return  HttpResponseRedirect('/')
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+def login_view(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password=request.POST['password']
+        user=authenticate(request,username=username,password=password)
+        if user is not None:
+            login(request,user)
+
+            return HttpResponseRedirect('/')
+        else:
+            messages.warning(request,"Kullanıcı adı yada parola yanlış")
+            return HttpResponseRedirect('/login')
+
+
+    category = Category.objects.all()
+    context = {
+        'category': category,
+    }
+
+    return render(request,'login.html',context)
 

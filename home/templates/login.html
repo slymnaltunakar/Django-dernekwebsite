@@ -1,0 +1,54 @@
+{% extends "Homebase.html" %}
+
+{% block title %} {{ setting.title }} {% endblock %}
+{% block description %} {{ setting.description }} {% endblock %}
+{% block author %} {{ setting.keywords }} {% endblock %}
+
+{% block head %} <link rel='shortcut icon' type='image/x-icon' href={{ setting.icon.url }} /> {% endblock %}
+
+
+
+{% block body %}
+
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="breadcrumb-main">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="/">Anasayfa</a>
+                </li>
+                <li class="breadcrumb-item active">üye Giriş</li>
+            </ol>
+        </div>
+        <!-- About Content -->
+        <div class="about-main">
+            <div class="row">
+<div class="col-md-12">
+                    <div class="container">
+                        <div class="section-title" align="center">
+                            <h3 class="title">Üye Giriş Formu</h3>
+                        </div>
+
+                <form class="form-style-9" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="input" type="text" name="username" placeholder="User Name">
+                    </div>
+                    <div class="form-group">
+                        <input class="input" type="password" name="password" placeholder="Password">
+                    </div>
+
+                    <input type="submit" value="login">
+                </form>
+
+                        <hr/>
+                                                <hr/>
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+
+
+{% endblock %}
