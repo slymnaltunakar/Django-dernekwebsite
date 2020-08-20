@@ -21,11 +21,17 @@
                 <li class="breadcrumb-item active">Hakkımızda</li>
             </ol>
         </div>
+
+    <div class="all-title-box">
+        <div class="container text-center">
+            <h1>{{ icerik.title }}<span class="m_1"></span></h1>
+        </div>
+    </div>
         <!-- About Content -->
         <div class="about-main">
             <div class="row">
                 <img src="{{ icerik.image.url }}" height="300" align="left" style="padding: 10px;border-radius: 25px;border: 30px">
-                {{ content.detail|safe }}
+                {{ icerik.detail|safe }}
                 <hr>
                 {% for rs in images %}
 
